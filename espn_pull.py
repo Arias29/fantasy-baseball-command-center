@@ -15,7 +15,7 @@ def fetch_espn_data(league_id, year):
     """
     print(f"Connecting to ESPN Fantasy API for League {league_id}...")
     league = League(league_id=league_id, year=year)
-    print(f"✓ Successfully connected to: {league.settings.name}")
+    print(f"[OK] Successfully connected to: {league.settings.name}")
 
     # 1. ROSTERS (Active Only)
     roster_data = []
@@ -113,5 +113,5 @@ def fetch_espn_free_agents(league_id, year):
             'Status': 'Available'
         })
     
-    print(f"✓ Found {len(fa_list)} real ESPN Free Agents with position data.")
+    print(f"[OK] Found {len(fa_list)} real ESPN Free Agents with position data.")
     return pd.DataFrame(fa_list)
