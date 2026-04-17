@@ -5,45 +5,64 @@ from espn_api.baseball import League
 
 # Map ESPN Slot IDs to human-readable labels for our Slot-Aware Gatekeeper
 SLOT_MAP = {
-    0: 'C', 1: '1B', 2: '2B', 3: '3B', 4: 'SS', 5: 'OF', 
-    6: '2B/SS', 7: '1B/3B', 12: 'UTIL', 13: 'P', 14: 'SP', 15: 'RP', 16: 'BE'
+    0: 'C', 1: '1B', 2: '2B', 3: '3B', 4: 'SS', 5: 'OF',
+    6: '2B/SS', 7: '1B/3B', 8: 'LF', 9: 'CF', 10: 'RF', 11: 'DH',
+    12: 'UTIL', 13: 'P', 14: 'SP', 15: 'RP', 16: 'BE',
+    17: 'IL', 18: 'IR', 19: 'IF'
 }
 
 def fetch_espn_data(league_id, year):
     """
-    Extracts live ACTIVE rosters (skips IL) and current YTD stats.
+    Extracts rosters for NEXT week's scoring period (so just-acquired players
+    show their intended active slots instead of the current-week BE), plus
+    current YTD team stats. IL/IR is still excluded; BE is kept.
     """
     print(f"Connecting to ESPN Fantasy API for League {league_id}...")
     league = League(league_id=league_id, year=year)
     print(f"[OK] Successfully connected to: {league.settings.name}")
 
-    # 1. ROSTERS (Active Only)
+    team_id_to_name = {team.team_id: team.team_name for team in league.teams}
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    # 1. ROSTERS (next week's slot assignments; skip IL/IR, keep BE)
+    next_period = league.current_week + 7
+    roster_url = (
+        f"https://lm-api-reads.fantasy.espn.com/apis/v3/games/flb/seasons/{year}"
+        f"/segments/0/leagues/{league_id}?view=mRoster&scoringPeriodId={next_period}"
+    )
+    print(f"[..] Fetching next-week rosters (scoringPeriodId={next_period})...")
+    roster_resp = requests.get(roster_url, headers=headers)
+    if roster_resp.status_code != 200:
+        raise ConnectionError(f"ESPN roster fetch returned status {roster_resp.status_code}")
+    roster_raw = roster_resp.json()
+
     roster_data = []
-    il_slots = ['IL', 'IR', 'Injured', 'Injured Reserve']
-    
-    for team in league.teams:
-        for player in team.roster:
-            if player.lineupSlot in il_slots:
+    for team_json in roster_raw.get('teams', []):
+        team_name = team_id_to_name.get(team_json.get('id'), "Unknown Team")
+        for entry in team_json.get('roster', {}).get('entries', []):
+            slot_id = entry.get('lineupSlotId')
+            slot_label = SLOT_MAP.get(slot_id, str(slot_id))
+            if slot_label in ('IL', 'IR'):
                 continue
+            player_info = entry.get('playerPoolEntry', {}).get('player', {}) or {}
+            eligible_labels = [SLOT_MAP.get(s) for s in player_info.get('eligibleSlots', []) if s in SLOT_MAP]
             roster_data.append({
-                'Team': team.team_name,
-                'Player': player.name,
-                'Positions': '/'.join(player.eligibleSlots),
-                'Lineup_Slot': player.lineupSlot,
+                'Team': team_name,
+                'Player': player_info.get('fullName'),
+                'Positions': '/'.join(filter(None, eligible_labels)),
+                'Lineup_Slot': slot_label,
                 'Status': 'Rostered'
             })
     df_rosters = pd.DataFrame(roster_data)
 
-    # 2. YTD STATS 
-    headers = {"User-Agent": "Mozilla/5.0"}
+    # 2. YTD STATS
     url = f"https://lm-api-reads.fantasy.espn.com/apis/v3/games/flb/seasons/{year}/segments/0/leagues/{league_id}?view=mTeam"
     response = requests.get(url, headers=headers)
-    
+
     if response.status_code != 200:
         raise ConnectionError(f"ESPN returned status code {response.status_code}")
-        
+
     raw_data = response.json()
-    team_id_to_name = {team.team_id: team.team_name for team in league.teams}
     
     stats_data = []
     for team_json in raw_data.get('teams', []):
