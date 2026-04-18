@@ -1,6 +1,6 @@
-pandas
-numpy
-requests
-espn_api
-streamlit
-plotly
+streamlit==1.56.0
+pandas==3.0.2
+numpy==2.4.4
+requests==2.33.1
+plotly==6.7.0
+espn_api==0.46.0

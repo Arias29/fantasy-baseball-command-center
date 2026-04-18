@@ -3,28 +3,21 @@ Fantasy Baseball Command Center — Streamlit Dashboard
 Run: streamlit run app.py
 """
 
+import json
 import time
+from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
+
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
-from pathlib import Path
 
 from analysis import (aggressive_clean, is_eligible, get_impact_string,
                       get_league_stats, clean_projections,
                       build_swap_context, fast_swap_gain)
-from config import MY_TEAM_NAME, LEAGUE_ID, YEAR, FOLDER
-from espn_pull import fetch_espn_data, fetch_espn_free_agents
-from fangraphs_pull import fetch_fangraphs_projections
+from config import MY_TEAM_NAME, LEAGUE_ID, YEAR, FOLDER, PROJ_OPTIONS
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-
-PROJ_OPTIONS = {
-    "Steamer ROS":      "steamer_ros",
-    "Depth Charts ROS": "depth_charts_ros",
-    "ZiPS ROS":         "zips_ros",
-    "THE BAT ROS":      "thebat_ros",
-    "THE BATx ROS":     "thebatx_ros",
-}
 
 POSITIONS          = ["C", "1B", "2B", "3B", "SS", "OF", "SP", "RP"]
 PITCHING_POSITIONS = {"SP", "RP", "P"}
@@ -93,7 +86,8 @@ def load_projections(proj_key):
     p_path = FOLDER / f'Fangraphs_Pitcher_{proj_key}.csv'
     if not h_path.exists() or not p_path.exists():
         raise FileNotFoundError(
-            f"No FanGraphs CSV found for '{proj_key}'. Use Refresh All Data to download it."
+            f"No FanGraphs CSV found for '{proj_key}'. "
+            "The scheduled refresh hasn't produced this file yet."
         )
     df_h_raw = pd.read_csv(h_path)
     df_p_raw = pd.read_csv(p_path)
@@ -502,48 +496,27 @@ def build_category_chart(baseline, my_team):
 
 
 # ── HEADER ────────────────────────────────────────────────────────────────────
-st.title("⚾ Fantasy Baseball Command Center")
+def _last_updated_caption() -> str:
+    """Return 'Data updated: Apr 18, 2026 at 6:00 AM CT' from metadata or mtime fallback."""
+    meta_path = FOLDER / 'data_metadata.json'
+    if meta_path.exists():
+        raw = json.loads(meta_path.read_text())['last_updated_utc']
+        ts_utc = datetime.fromisoformat(raw.replace('Z', '+00:00'))
+    else:
+        fallback = FOLDER / 'espn_current_rosters.csv'
+        if not fallback.exists():
+            return "Data updated: unknown"
+        ts_utc = datetime.fromtimestamp(fallback.stat().st_mtime, tz=timezone.utc)
+    ct = ts_utc.astimezone(ZoneInfo('America/Chicago'))
+    hour = ct.strftime('%I').lstrip('0') or '12'
+    return f"Data updated: {ct.strftime('%b %d, %Y')} at {hour}:{ct.strftime('%M %p')} CT"
 
-hdr_left, hdr_right = st.columns([5, 1])
-with hdr_left:
-    st.caption(f"Team: **{MY_TEAM_NAME}** | League {LEAGUE_ID} | {YEAR} Season")
-    roster_csv = FOLDER / 'espn_current_rosters.csv'
-    if roster_csv.exists():
-        age_min     = (time.time() - roster_csv.stat().st_mtime) / 60
-        updated_str = time.strftime('%b %d %H:%M', time.localtime(roster_csv.stat().st_mtime))
-        freshness   = f"{age_min:.0f} min ago" if age_min < 60 else f"{age_min / 60:.1f} h ago"
-        st.caption(f"Last refreshed: **{updated_str}** ({freshness})")
-with hdr_right:
-    if st.button("🔄 Refresh All Data", use_container_width=True):
-        _errors = []
-        with st.spinner("Fetching ESPN data..."):
-            try:
-                df_r, df_c = fetch_espn_data(LEAGUE_ID, YEAR)
-                df_f       = fetch_espn_free_agents(LEAGUE_ID, YEAR)
-                df_r.to_csv(FOLDER / 'espn_current_rosters.csv', index=False)
-                df_c.to_csv(FOLDER / 'current_team_stats.csv',   index=False)
-                df_f.to_csv(FOLDER / 'espn_free_agents.csv',     index=False)
-            except Exception as e:
-                _errors.append(f"ESPN: {e}")
-        with st.spinner("Fetching FanGraphs projections (5 systems)..."):
-            for _pk in PROJ_OPTIONS.values():
-                try:
-                    _df_h, _df_p, _ = fetch_fangraphs_projections(_pk)
-                    _df_h.to_csv(FOLDER / f'Fangraphs_Hitter_{_pk}.csv',  index=False)
-                    _df_p.to_csv(FOLDER / f'Fangraphs_Pitcher_{_pk}.csv', index=False)
-                except Exception as e:
-                    _errors.append(f"FanGraphs {_pk}: {e}")
-        st.session_state['refresh_errors'] = _errors
-        st.cache_data.clear()
-        st.rerun()
+
+st.title("⚾ Fantasy Baseball Command Center")
+st.caption(f"Team: **{MY_TEAM_NAME}** | League {LEAGUE_ID} | {YEAR} Season")
+st.caption(_last_updated_caption())
 
 st.divider()
-
-# Show any errors from the last refresh attempt
-_refresh_errors = st.session_state.pop('refresh_errors', [])
-if _refresh_errors:
-    st.error("Some sources failed during refresh:\n\n" +
-             "\n\n".join(f"- {e}" for e in _refresh_errors))
 
 # Guard: ensure all required FanGraphs CSVs exist before rendering tabs
 _missing_csvs = [pk for pk in set(list(PROJ_OPTIONS.values()) + list(ANALYSIS_PROJ_KEYS.values()))
@@ -551,7 +524,8 @@ _missing_csvs = [pk for pk in set(list(PROJ_OPTIONS.values()) + list(ANALYSIS_PR
 if _missing_csvs:
     st.warning(
         f"FanGraphs CSVs are missing for: **{', '.join(_missing_csvs)}**\n\n"
-        "Click **Refresh All Data** above to download them."
+        "The scheduled GitHub Actions refresh hasn't produced these yet — "
+        "check the Actions tab for a failed run."
     )
     st.stop()
 
@@ -581,7 +555,8 @@ with tab1:
         if _age_h > 24:
             _updated = time.strftime('%b %d %H:%M', time.localtime(_fg_csv.stat().st_mtime))
             st.warning(f"FanGraphs projections ({proj_name}) are **{_age_h:.0f} h old** "
-                       f"(last refreshed {_updated}). Consider hitting Refresh All Data.")
+                       f"(last refreshed {_updated}). The scheduled refresh may have failed — "
+                       "check the GitHub Actions tab.")
 
     standings_df = (baseline[DISPLAY_COLS]
                     .sort_values('Total_Points', ascending=False)
@@ -632,7 +607,7 @@ with tab1:
 
     st.subheader(f"Category Rankings — {MY_TEAM_NAME}")
     st.caption("Green = top 3  |  Yellow = middle  |  Red = bottom 3")
-    st.plotly_chart(build_category_chart(baseline, MY_TEAM_NAME), use_container_width=True)
+    st.plotly_chart(build_category_chart(baseline, MY_TEAM_NAME), width='stretch')
 
     st.divider()
     st.subheader("Team Rosters — Projected ROS Stats")
@@ -692,7 +667,7 @@ with tab1:
                             'R':   '{:.0f}', 'HR':  '{:.0f}', 'RBI': '{:.0f}',
                             'SB':  '{:.0f}', 'PA':  '{:.0f}', 'OPS': '{:.3f}',
                         }, na_rep='—'),
-                    use_container_width=True,
+                    width='stretch',
                     hide_index=True,
                 )
 
@@ -705,7 +680,7 @@ with tab1:
                             'IP':   '{:.1f}', 'QS':  '{:.0f}', 'SV':  '{:.0f}',
                             'ERA':  '{:.2f}', 'WHIP': '{:.2f}',
                         }, na_rep='—'),
-                    use_container_width=True,
+                    width='stretch',
                     hide_index=True,
                 )
 
@@ -1056,5 +1031,5 @@ with tab4:
                     sim_standings.index += 1
                     st.dataframe(
                         style_standings(sim_standings.head(5)),
-                        use_container_width=True,
+                        width='stretch',
                     )
