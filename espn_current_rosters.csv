@@ -59,9 +59,9 @@ Rebels,Julio Rodriguez,CF/OF/UTIL/BE/IL,CF,Rostered
 Rebels,Tarik Skubal,P/SP/BE/IL,SP,Rostered
 Rebels,Garrett Crochet,P/SP/BE/IL,SP,Rostered
 Rebels,Jacob deGrom,P/SP/BE/IL,SP,Rostered
-Rebels,Freddie Freeman,1B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
+Rebels,Freddie Freeman,1B/1B/3B/IF/UTIL/BE/IL,BE,Rostered
 Rebels,Bo Bichette,SS/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,SS,Rostered
-Rebels,Christian Yelich,DH/UTIL/BE/IL,BE,Rostered
+Rebels,Christian Yelich,DH/UTIL/BE/IL,DH,Rostered
 Rebels,Cade Smith,P/RP/BE/IL,RP,Rostered
 Rebels,Jose Altuve,2B/2B/SS/IF/LF/OF/DH/UTIL/BE/IL,2B,Rostered
 Rebels,Yainer Diaz,C/DH/UTIL/BE/IL,C,Rostered
@@ -69,11 +69,11 @@ Rebels,Bryson Stott,2B/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 Rebels,Steven Kwan,LF/OF/UTIL/BE/IL/CF,LF,Rostered
 Rebels,Noelvi Marte,3B/1B/3B/IF/RF/OF/UTIL/BE/IL,RF,Rostered
 Rebels,Adolis Garcia,RF/OF/UTIL/BE/IL,OF,Rostered
-Rebels,Willson Contreras,1B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
+Rebels,Willson Contreras,1B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
 Rebels,Jonathan Aranda,1B/1B/3B/IF/UTIL/BE/IL,UTIL,Rostered
 Rebels,Carlos Correa,3B/SS/2B/SS/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Rebels,Kerry Carpenter,LF/RF/OF/DH/UTIL/BE/IL,OF,Rostered
-Rebels,Kirby Yates,P/RP/BE/IL,P,Rostered
+Rebels,Kirby Yates,P/RP/BE/IL,RP,Rostered
 Rebels,Tanner Scott,P/RP/BE/IL,RP,Rostered
 Rebels,Riley O'Brien,P/RP/BE/IL,RP,Rostered
 Rebels,Will Vest,P/RP/BE/IL,RP,Rostered
@@ -81,7 +81,7 @@ Rebels,Noah Cameron,P/SP/BE/IL,SP,Rostered
 Rebels,Clayton Beeter,P/RP/BE/IL,RP,Rostered
 Rebels,Andrew Painter,P/SP/BE/IL,SP,Rostered
 Rebels,Reynaldo Lopez,P/SP/BE/IL,SP,Rostered
-Rebels,Brendan Donovan,2B/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,BE,Rostered
+Rebels,Brendan Donovan,2B/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,1B/3B,Rostered
 Rebels,Taj Bradley,P/SP/BE/IL,P,Rostered
 Judge Judy and Executioner ,Elly De La Cruz,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Judge Judy and Executioner ,Gunnar Henderson,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
@@ -155,7 +155,7 @@ Lucas Alvarez Team,Nick Martinez,P/SP/RP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Kyle Leahy,P/RP/BE/IL/SP,RP,Rostered
 Lucas Alvarez Team,Erick Fedde,P/SP/RP/BE/IL,RP,Rostered
 Lucas Alvarez Team,Ramon Laureano,LF/RF/OF/UTIL/BE/IL,RF,Rostered
-Lucas Alvarez Team,Trevor Larnach,RF/OF/DH/UTIL/BE/IL,OF,Rostered
+Lucas Alvarez Team,Trevor Larnach,RF/OF/DH/UTIL/BE/IL/LF,OF,Rostered
 Lucas Alvarez Team,Calvin Faucher,P/RP/BE/IL,RP,Rostered
 Lucas Alvarez Team,Jose Ferrer,P/RP/BE/IL,RP,Rostered
 Lucas Alvarez Team,Nick Castellanos,RF/OF/UTIL/BE/IL,OF,Rostered
@@ -273,10 +273,10 @@ Corbin Barrels,Nolan Arenado,3B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Corbin Barrels,Hogan Harris,P/RP/BE/IL,RP,Rostered
 Corbin Barrels,Randy Vasquez,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Jorge Soler,RF/OF/DH/UTIL/BE/IL,DH,Rostered
-Corbin Barrels,Mickey Moniak,CF/RF/OF/UTIL/BE/IL,OF,Rostered
+Corbin Barrels,Mickey Moniak,CF/RF/OF/UTIL/BE/IL,CF,Rostered
 Corbin Barrels,Dansby Swanson,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 Corbin Barrels,Landen Roupp,P/SP/BE/IL,SP,Rostered
-Corbin Barrels,Jeremiah Jackson,3B/1B/3B/IF/RF/OF/UTIL/BE/IL/2B/2B/SS,BE,Rostered
+Corbin Barrels,Jeremiah Jackson,3B/1B/3B/IF/RF/OF/UTIL/BE/IL/2B/2B/SS,OF,Rostered
 John's Finest Team,Jose Ramirez,3B/1B/3B/IF/DH/UTIL/BE/IL,3B,Rostered
 John's Finest Team,Vladimir Guerrero Jr.,1B/1B/3B/IF/DH/UTIL/BE/IL,1B,Rostered
 John's Finest Team,Cristopher Sanchez,P/SP/BE/IL,SP,Rostered
