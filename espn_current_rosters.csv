@@ -39,27 +39,27 @@ The Roman Empire Strikes Back,Kenley Jansen,P/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Robert Suarez,P/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Chase Burns,P/SP/BE/IL,SP,Rostered
 The Roman Empire Strikes Back,Trevor Rogers,P/SP/BE/IL,SP,Rostered
-The Roman Empire Strikes Back,Jac Caglianone,RF/OF/UTIL/BE/IL,OF,Rostered
+The Roman Empire Strikes Back,Jac Caglianone,RF/OF/UTIL/BE/IL,UTIL,Rostered
 The Roman Empire Strikes Back,Kevin McGonigle,SS/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,2B/SS,Rostered
 The Roman Empire Strikes Back,Joey Cantillo,P/SP/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Ryne Nelson,P/SP/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Shane McClanahan,P/SP/BE/IL,P,Rostered
 The Roman Empire Strikes Back,JJ Wetherholt,2B/SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
-The Roman Empire Strikes Back,Chase DeLauter,LF/RF/OF/UTIL/BE/IL,UTIL,Rostered
+The Roman Empire Strikes Back,Chase DeLauter,LF/RF/OF/UTIL/BE/IL,OF,Rostered
 The Roman Empire Strikes Back,Michael Soroka,P/SP/BE/IL,SP,Rostered
 The Roman Empire Strikes Back,Max Muncy,2B/3B/2B/SS/1B/3B/IF/UTIL/BE/IL,2B,Rostered
 The Roman Empire Strikes Back,Jack Dreyer,P/SP/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Kyle Isbel,CF/OF/UTIL/BE/IL,CF,Rostered
 The Roman Empire Strikes Back,Bryce Elder,P/SP/BE/IL,SP,Rostered
 The Roman Empire Strikes Back,TJ Rumfield,3B/1B/3B/IF/UTIL/BE/IL/1B,1B/3B,Rostered
-The Roman Empire Strikes Back,Justin Wrobleski,P/RP/BE/IL,RP,Rostered
+The Roman Empire Strikes Back,Justin Wrobleski,P/RP/BE/IL/SP,RP,Rostered
 The Roman Empire Strikes Back,Spencer Arrighetti,P/SP/BE/IL,SP,Rostered
 The Roman Empire Strikes Back,Brandon Sproat,P/SP/BE/IL,P,Rostered
 Rebels,Julio Rodriguez,CF/OF/UTIL/BE/IL,CF,Rostered
 Rebels,Tarik Skubal,P/SP/BE/IL,SP,Rostered
 Rebels,Garrett Crochet,P/SP/BE/IL,SP,Rostered
 Rebels,Jacob deGrom,P/SP/BE/IL,SP,Rostered
-Rebels,Freddie Freeman,1B/1B/3B/IF/UTIL/BE/IL,BE,Rostered
+Rebels,Freddie Freeman,1B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Rebels,Bo Bichette,SS/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,SS,Rostered
 Rebels,Christian Yelich,DH/UTIL/BE/IL,DH,Rostered
 Rebels,Cade Smith,P/RP/BE/IL,RP,Rostered
@@ -81,7 +81,7 @@ Rebels,Noah Cameron,P/SP/BE/IL,SP,Rostered
 Rebels,Clayton Beeter,P/RP/BE/IL,RP,Rostered
 Rebels,Andrew Painter,P/SP/BE/IL,SP,Rostered
 Rebels,Reynaldo Lopez,P/SP/BE/IL,SP,Rostered
-Rebels,Brendan Donovan,2B/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,1B/3B,Rostered
+Rebels,Brendan Donovan,2B/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,BE,Rostered
 Rebels,Taj Bradley,P/SP/BE/IL,P,Rostered
 Judge Judy and Executioner ,Elly De La Cruz,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Judge Judy and Executioner ,Gunnar Henderson,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
@@ -254,7 +254,6 @@ Corbin Barrels,Bryan Woo,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Ketel Marte,2B/2B/SS/IF/DH/UTIL/BE/IL,2B,Rostered
 Corbin Barrels,Trea Turner,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Corbin Barrels,Kyle Tucker,RF/OF/UTIL/BE/IL,OF,Rostered
-Corbin Barrels,Edwin Diaz,P/RP/BE/IL,RP,Rostered
 Corbin Barrels,Framber Valdez,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Maikel Garcia,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Corbin Barrels,Drake Baldwin,C/UTIL/BE/IL,C,Rostered
@@ -264,7 +263,6 @@ Corbin Barrels,Michael Wacha,P/SP/BE/IL,P,Rostered
 Corbin Barrels,Victor Vodnik,P/RP/BE/IL,RP,Rostered
 Corbin Barrels,Jose Soriano,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Xander Bogaerts,SS/2B/SS/IF/UTIL/BE/IL,UTIL,Rostered
-Corbin Barrels,Jonathan India,2B/3B/2B/SS/1B/3B/IF/LF/OF/DH/UTIL/BE/IL,LF,Rostered
 Corbin Barrels,Jack Leiter,P/SP/BE/IL,P,Rostered
 Corbin Barrels,Matt Brash,P/RP/BE/IL,RP,Rostered
 Corbin Barrels,Blake Treinen,P/RP/BE/IL,RP,Rostered
