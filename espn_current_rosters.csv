@@ -1,16 +1,14 @@
 Team,Player,Positions,Lineup_Slot,Status
-Haders Gonna Hade,Francisco Lindor,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Haders Gonna Hade,Jazz Chisholm Jr.,2B/3B/2B/SS/1B/3B/IF/UTIL/BE/IL,2B,Rostered
 Haders Gonna Hade,Rafael Devers,1B/1B/3B/IF/DH/UTIL/BE/IL,DH,Rostered
 Haders Gonna Hade,Matt Olson,1B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
 Haders Gonna Hade,Byron Buxton,CF/OF/UTIL/BE/IL,CF,Rostered
-Haders Gonna Hade,Wyatt Langford,LF/CF/OF/UTIL/BE/IL,LF,Rostered
 Haders Gonna Hade,Seiya Suzuki,RF/OF/DH/UTIL/BE/IL,OF,Rostered
 Haders Gonna Hade,David Bednar,P/RP/BE/IL,RP,Rostered
 Haders Gonna Hade,Ben Rice,C/1B/1B/3B/IF/DH/UTIL/BE/IL,C,Rostered
 Haders Gonna Hade,Eury Perez,P/SP/BE/IL,SP,Rostered
 Haders Gonna Hade,Sandy Alcantara,P/SP/BE/IL,SP,Rostered
-Haders Gonna Hade,Willy Adames,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
+Haders Gonna Hade,Willy Adames,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Haders Gonna Hade,Jeff Hoffman,P/RP/BE/IL,RP,Rostered
 Haders Gonna Hade,Nolan McLean,P/SP/BE/IL,P,Rostered
 Haders Gonna Hade,Drew Rasmussen,P/SP/BE/IL,SP,Rostered
@@ -149,7 +147,6 @@ Lucas Alvarez Team,Trent Grisham,CF/OF/UTIL/BE/IL,CF,Rostered
 Lucas Alvarez Team,Zack Littell,P/SP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Merrill Kelly,P/SP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Lenyn Sosa,1B/2B/2B/SS/1B/3B/IF/UTIL/BE/IL,2B,Rostered
-Lucas Alvarez Team,J.T. Realmuto,C/UTIL/BE/IL,C,Rostered
 Lucas Alvarez Team,Gleyber Torres,2B/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 Lucas Alvarez Team,Josh Smith,1B/3B/SS/2B/SS/1B/3B/IF/UTIL/BE/IL/2B,1B,Rostered
 Lucas Alvarez Team,Nick Martinez,P/SP/RP/BE/IL,RP,Rostered
@@ -181,6 +178,7 @@ brew crew,Brandon Nimmo,LF/OF/UTIL/BE/IL/RF,OF,Rostered
 brew crew,Matthew Boyd,P/SP/BE/IL,SP,Rostered
 brew crew,Zac Gallen,P/SP/BE/IL,P,Rostered
 brew crew,Heliot Ramos,LF/OF/UTIL/BE/IL,BE,Rostered
+brew crew,Adley Rutschman,C/UTIL/BE/IL,C,Rostered
 brew crew,Luis Arraez,1B/1B/3B/IF/DH/UTIL/BE/IL/2B/2B/SS,1B,Rostered
 brew crew,Ian Happ,LF/OF/UTIL/BE/IL,OF,Rostered
 brew crew,Jakob Marsee,CF/OF/UTIL/BE/IL,UTIL,Rostered
@@ -190,10 +188,8 @@ brew crew,Otto Lopez,2B/SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 brew crew,Garrett Whitlock,P/RP/BE/IL,RP,Rostered
 brew crew,JoJo Romero,P/RP/BE/IL,RP,Rostered
 brew crew,Ian Seymour,P/SP/RP/BE/IL,RP,Rostered
-brew crew,Zach McKinstry,3B/SS/2B/SS/1B/3B/IF/RF/OF/UTIL/BE/IL,1B/3B,Rostered
 brew crew,Will Warren,P/SP/BE/IL,P,Rostered
 brew crew,Garrett Mitchell,CF/OF/UTIL/BE/IL,CF,Rostered
-brew crew,Ryan Jeffers,C/DH/UTIL/BE/IL,C,Rostered
 Spencer Steer for MVP,Yoshinobu Yamamoto,P/SP/BE/IL,SP,Rostered
 Spencer Steer for MVP,Joe Ryan,P/SP/BE/IL,SP,Rostered
 Spencer Steer for MVP,James Wood,LF/OF/DH/UTIL/BE/IL/RF,LF,Rostered
