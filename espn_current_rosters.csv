@@ -44,7 +44,7 @@ The Roman Empire Strikes Back,Joey Cantillo,P/SP/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Ryne Nelson,P/SP/RP/BE/IL,RP,Rostered
 The Roman Empire Strikes Back,Shane McClanahan,P/SP/BE/IL,P,Rostered
 The Roman Empire Strikes Back,JJ Wetherholt,2B/SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
-The Roman Empire Strikes Back,Chase DeLauter,LF/RF/OF/UTIL/BE/IL,OF,Rostered
+The Roman Empire Strikes Back,Chase DeLauter,LF/RF/OF/UTIL/BE/IL/DH,OF,Rostered
 The Roman Empire Strikes Back,Michael Soroka,P/SP/BE/IL,SP,Rostered
 The Roman Empire Strikes Back,Max Muncy,2B/3B/2B/SS/1B/3B/IF/UTIL/BE/IL,2B,Rostered
 The Roman Empire Strikes Back,Kyle Isbel,CF/OF/UTIL/BE/IL,CF,Rostered
@@ -99,7 +99,7 @@ Judge Judy and Executioner ,Ceddanne Rafaela,2B/2B/SS/IF/CF/OF/UTIL/BE/IL,CF,Ros
 Judge Judy and Executioner ,Kazuma Okamoto,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Judge Judy and Executioner ,Shane Baz,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Kris Bubic,P/SP/BE/IL,SP,Rostered
-Judge Judy and Executioner ,Daylen Lile,LF/RF/OF/UTIL/BE/IL,OF,Rostered
+Judge Judy and Executioner ,Daylen Lile,LF/RF/OF/UTIL/BE/IL,RF,Rostered
 Judge Judy and Executioner ,Matt McLain,2B/2B/SS/IF/UTIL/BE/IL,2B,Rostered
 Judge Judy and Executioner ,Tony Santillan,P/RP/BE/IL,RP,Rostered
 Judge Judy and Executioner ,Jordan Romano,P/RP/BE/IL,RP,Rostered
@@ -107,10 +107,10 @@ Judge Judy and Executioner ,Liam Hicks,C/1B/1B/3B/IF/DH/UTIL/BE/IL,UTIL,Rostered
 Judge Judy and Executioner ,Mauricio Dubon,2B/3B/SS/2B/SS/1B/3B/IF/LF/OF/UTIL/BE/IL,OF,Rostered
 Judge Judy and Executioner ,Jeffrey Springs,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Seth Lugo,P/SP/BE/IL,SP,Rostered
-Judge Judy and Executioner ,Jakob Junis,P/RP/BE/IL,P,Rostered
+Judge Judy and Executioner ,Jakob Junis,P/RP/BE/IL,RP,Rostered
 Judge Judy and Executioner ,Foster Griffin,P/SP/BE/IL,P,Rostered
 Judge Judy and Executioner ,Max Muncy,3B/1B/3B/IF/UTIL/BE/IL,BE,Rostered
-Judge Judy and Executioner ,Rhett Lowder,P/SP/BE/IL,BE,Rostered
+Judge Judy and Executioner ,Rhett Lowder,P/SP/BE/IL,P,Rostered
 Budget Ballers,Will Smith,C/UTIL/BE/IL,C,Rostered
 Budget Ballers,Manny Machado,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Budget Ballers,Yordan Alvarez,LF/OF/DH/UTIL/BE/IL,DH,Rostered
@@ -144,7 +144,6 @@ Lucas Alvarez Team,Shohei Ohtani,DH/UTIL/P/SP/BE/IL,DH,Rostered
 Lucas Alvarez Team,Tanner Bibee,P/SP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Cole Ragans,P/SP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Tyler Soderstrom,1B/1B/3B/IF/LF/OF/UTIL/BE/IL,LF,Rostered
-Lucas Alvarez Team,Eugenio Suarez,3B/1B/3B/IF/UTIL/BE/IL/DH,3B,Rostered
 Lucas Alvarez Team,Alec Bohm,3B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Lucas Alvarez Team,Trent Grisham,CF/OF/UTIL/BE/IL,CF,Rostered
 Lucas Alvarez Team,Zack Littell,P/SP/BE/IL,SP,Rostered
@@ -246,10 +245,10 @@ Exit Velo Vets,Seranthony Dominguez,P/RP/BE/IL,RP,Rostered
 Exit Velo Vets,Edward Cabrera,P/SP/BE/IL,SP,Rostered
 Exit Velo Vets,Ryan Weathers,P/SP/BE/IL,P,Rostered
 Exit Velo Vets,Cam Smith,RF/OF/UTIL/BE/IL,OF,Rostered
-Exit Velo Vets,Chase Dollander,P/SP/BE/IL/RP,SP,Rostered
+Exit Velo Vets,Chase Dollander,P/SP/BE/IL/RP,RP,Rostered
 Exit Velo Vets,Ildemaro Vargas,1B/2B/2B/SS/1B/3B/IF/UTIL/BE/IL,2B/SS,Rostered
 Exit Velo Vets,Davis Martin,P/SP/BE/IL,P,Rostered
-Exit Velo Vets,Dustin May,P/SP/BE/IL,BE,Rostered
+Exit Velo Vets,Dustin May,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Corbin Carroll,RF/OF/UTIL/BE/IL,RF,Rostered
 Corbin Barrels,Bryan Woo,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Ketel Marte,2B/2B/SS/IF/DH/UTIL/BE/IL,2B,Rostered
