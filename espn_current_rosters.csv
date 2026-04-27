@@ -30,7 +30,7 @@ Haders Gonna Hade,Carson Benge,LF/CF/RF/OF/UTIL/BE/IL,LF,Rostered
 The Roman Empire Strikes Back,Ronald Acuna Jr.,RF/OF/UTIL/BE/IL,RF,Rostered
 The Roman Empire Strikes Back,Nick Kurtz,1B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
 The Roman Empire Strikes Back,Junior Caminero,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
-The Roman Empire Strikes Back,Roman Anthony,LF/RF/OF/UTIL/BE/IL,LF,Rostered
+The Roman Empire Strikes Back,Roman Anthony,LF/RF/OF/UTIL/BE/IL/DH,LF,Rostered
 The Roman Empire Strikes Back,Josh Naylor,1B/1B/3B/IF/DH/UTIL/BE/IL,DH,Rostered
 The Roman Empire Strikes Back,Hunter Goodman,C/DH/UTIL/BE/IL,C,Rostered
 The Roman Empire Strikes Back,Mike Trout,RF/OF/DH/UTIL/BE/IL/CF,OF,Rostered
@@ -102,7 +102,6 @@ Judge Judy and Executioner ,Kris Bubic,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Daylen Lile,LF/RF/OF/UTIL/BE/IL,RF,Rostered
 Judge Judy and Executioner ,Matt McLain,2B/2B/SS/IF/UTIL/BE/IL,2B,Rostered
 Judge Judy and Executioner ,Tony Santillan,P/RP/BE/IL,RP,Rostered
-Judge Judy and Executioner ,Jordan Romano,P/RP/BE/IL,RP,Rostered
 Judge Judy and Executioner ,Liam Hicks,C/1B/1B/3B/IF/DH/UTIL/BE/IL,UTIL,Rostered
 Judge Judy and Executioner ,Mauricio Dubon,2B/3B/SS/2B/SS/1B/3B/IF/LF/OF/UTIL/BE/IL,OF,Rostered
 Judge Judy and Executioner ,Jeffrey Springs,P/SP/BE/IL,SP,Rostered
@@ -118,6 +117,7 @@ Budget Ballers,Pete Crow-Armstrong,CF/OF/UTIL/BE/IL,CF,Rostered
 Budget Ballers,Logan Webb,P/SP/BE/IL,SP,Rostered
 Budget Ballers,Jackson Merrill,CF/OF/UTIL/BE/IL,OF,Rostered
 Budget Ballers,Dylan Cease,P/SP/BE/IL,SP,Rostered
+Budget Ballers,Brent Rooker,RF/OF/DH/UTIL/BE/IL,OF,Rostered
 Budget Ballers,Randy Arozarena,LF/OF/UTIL/BE/IL,LF,Rostered
 Budget Ballers,Andy Pages,LF/CF/RF/OF/UTIL/BE/IL,RF,Rostered
 Budget Ballers,Corey Seager,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
@@ -134,7 +134,6 @@ Budget Ballers,Robbie Ray,P/SP/BE/IL,P,Rostered
 Budget Ballers,Grant Taylor,P/RP/BE/IL/SP,RP,Rostered
 Budget Ballers,Miguel Vargas,1B/3B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
 Budget Ballers,Andres Gimenez,2B/2B/SS/IF/UTIL/BE/IL/SS,2B,Rostered
-Budget Ballers,Evan Carter,CF/OF/UTIL/BE/IL,OF,Rostered
 Budget Ballers,Steven Matz,P/RP/BE/IL/SP,RP,Rostered
 Budget Ballers,Joel Kuhnel,P/RP/BE/IL,RP,Rostered
 Budget Ballers,Max Meyer,P/SP/BE/IL,SP,Rostered
@@ -180,19 +179,20 @@ brew crew,Chandler Simpson,LF/CF/OF/UTIL/BE/IL,LF,Rostered
 brew crew,Brandon Nimmo,LF/OF/UTIL/BE/IL/RF,OF,Rostered
 brew crew,Matthew Boyd,P/SP/BE/IL,SP,Rostered
 brew crew,Zac Gallen,P/SP/BE/IL,P,Rostered
-brew crew,Heliot Ramos,LF/OF/UTIL/BE/IL,BE,Rostered
+brew crew,Heliot Ramos,LF/OF/UTIL/BE/IL,UTIL,Rostered
 brew crew,Adley Rutschman,C/UTIL/BE/IL,C,Rostered
 brew crew,Luis Arraez,1B/1B/3B/IF/DH/UTIL/BE/IL/2B/2B/SS,1B,Rostered
 brew crew,Ian Happ,LF/OF/UTIL/BE/IL,OF,Rostered
-brew crew,Jakob Marsee,CF/OF/UTIL/BE/IL,UTIL,Rostered
+brew crew,Jakob Marsee,CF/OF/UTIL/BE/IL,CF,Rostered
 brew crew,Willi Castro,2B/3B/2B/SS/1B/3B/IF/LF/RF/OF/UTIL/BE/IL,3B,Rostered
+brew crew,Trey Yesavage,P/SP/BE/IL,SP,Rostered
 brew crew,Braxton Ashcraft,P/SP/RP/BE/IL,RP,Rostered
 brew crew,Otto Lopez,2B/SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 brew crew,Garrett Whitlock,P/RP/BE/IL,RP,Rostered
 brew crew,JoJo Romero,P/RP/BE/IL,RP,Rostered
 brew crew,Ian Seymour,P/SP/RP/BE/IL,RP,Rostered
+brew crew,Zach McKinstry,3B/SS/2B/SS/1B/3B/IF/RF/OF/UTIL/BE/IL,1B/3B,Rostered
 brew crew,Will Warren,P/SP/BE/IL,P,Rostered
-brew crew,Garrett Mitchell,CF/OF/UTIL/BE/IL,CF,Rostered
 Spencer Steer for MVP,Yoshinobu Yamamoto,P/SP/BE/IL,SP,Rostered
 Spencer Steer for MVP,Joe Ryan,P/SP/BE/IL,SP,Rostered
 Spencer Steer for MVP,James Wood,LF/OF/DH/UTIL/BE/IL/RF,LF,Rostered
@@ -270,12 +270,12 @@ Corbin Barrels,Nolan Arenado,3B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Corbin Barrels,Hogan Harris,P/RP/BE/IL,RP,Rostered
 Corbin Barrels,Randy Vasquez,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Jorge Soler,RF/OF/DH/UTIL/BE/IL,DH,Rostered
-Corbin Barrels,Mickey Moniak,CF/RF/OF/UTIL/BE/IL,CF,Rostered
+Corbin Barrels,Mickey Moniak,CF/RF/OF/UTIL/BE/IL/LF,CF,Rostered
 Corbin Barrels,Dansby Swanson,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
 Corbin Barrels,Landen Roupp,P/SP/BE/IL,SP,Rostered
 Corbin Barrels,Jeremiah Jackson,3B/1B/3B/IF/RF/OF/UTIL/BE/IL/2B/2B/SS,OF,Rostered
 Corbin Barrels,Carmen Mlodzinski,P/SP/RP/BE/IL,RP,Rostered
-Corbin Barrels,Jake McCarthy,LF/OF/UTIL/BE/IL,LF,Rostered
+Corbin Barrels,Jake McCarthy,LF/OF/UTIL/BE/IL/CF,LF,Rostered
 Corbin Barrels,Keider Montero,P/SP/RP/BE/IL,RP,Rostered
 John's Finest Team,Jose Ramirez,3B/1B/3B/IF/DH/UTIL/BE/IL,3B,Rostered
 John's Finest Team,Vladimir Guerrero Jr.,1B/1B/3B/IF/DH/UTIL/BE/IL,1B,Rostered
