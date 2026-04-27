@@ -96,7 +96,6 @@ Judge Judy and Executioner ,Nathan Eovaldi,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Raisel Iglesias,P/RP/BE/IL,RP,Rostered
 Judge Judy and Executioner ,Alec Burleson,1B/1B/3B/IF/LF/RF/OF/DH/UTIL/BE/IL,LF,Rostered
 Judge Judy and Executioner ,Ceddanne Rafaela,2B/2B/SS/IF/CF/OF/UTIL/BE/IL,CF,Rostered
-Judge Judy and Executioner ,Kazuma Okamoto,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Judge Judy and Executioner ,Shane Baz,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Kris Bubic,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Daylen Lile,LF/RF/OF/UTIL/BE/IL,RF,Rostered
@@ -108,7 +107,7 @@ Judge Judy and Executioner ,Jeffrey Springs,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Seth Lugo,P/SP/BE/IL,SP,Rostered
 Judge Judy and Executioner ,Jakob Junis,P/RP/BE/IL,RP,Rostered
 Judge Judy and Executioner ,Foster Griffin,P/SP/BE/IL,P,Rostered
-Judge Judy and Executioner ,Max Muncy,3B/1B/3B/IF/UTIL/BE/IL,BE,Rostered
+Judge Judy and Executioner ,Max Muncy,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Judge Judy and Executioner ,Rhett Lowder,P/SP/BE/IL,P,Rostered
 Budget Ballers,Will Smith,C/UTIL/BE/IL,C,Rostered
 Budget Ballers,Manny Machado,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
@@ -277,6 +276,7 @@ Corbin Barrels,Jeremiah Jackson,3B/1B/3B/IF/RF/OF/UTIL/BE/IL/2B/2B/SS,OF,Rostere
 Corbin Barrels,Carmen Mlodzinski,P/SP/RP/BE/IL,RP,Rostered
 Corbin Barrels,Jake McCarthy,LF/OF/UTIL/BE/IL/CF,LF,Rostered
 Corbin Barrels,Keider Montero,P/SP/RP/BE/IL,RP,Rostered
+John's Finest Team,Zack Wheeler,P/SP/BE/IL,SP,Rostered
 John's Finest Team,Jose Ramirez,3B/1B/3B/IF/DH/UTIL/BE/IL,3B,Rostered
 John's Finest Team,Vladimir Guerrero Jr.,1B/1B/3B/IF/DH/UTIL/BE/IL,1B,Rostered
 John's Finest Team,Cristopher Sanchez,P/SP/BE/IL,SP,Rostered
@@ -304,7 +304,6 @@ John's Finest Team,Eduardo Rodriguez,P/SP/BE/IL,P,Rostered
 John's Finest Team,Lance McCullers Jr.,P/SP/BE/IL,SP,Rostered
 John's Finest Team,Francisco Alvarez,C/UTIL/BE/IL,C,Rostered
 John's Finest Team,Daniel Schneemann,2B/3B/2B/SS/1B/3B/IF/CF/OF/UTIL/BE/IL,CF,Rostered
-John's Finest Team,Leody Taveras,CF/RF/OF/UTIL/BE/IL,BE,Rostered
 adam's Astounding Team,Cal Raleigh,C/DH/UTIL/BE/IL,C,Rostered
 adam's Astounding Team,Paul Skenes,P/SP/BE/IL,SP,Rostered
 adam's Astounding Team,Chris Sale,P/SP/BE/IL,SP,Rostered
