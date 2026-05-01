@@ -241,7 +241,8 @@ def backfill_gain(add_clean, drop_clean, slot, proj_key):
         'Lineup_Slot': slot,
     }])], ignore_index=True)
     sim = get_league_stats(df_temp, df_h, df_p, df_current).set_index('Team').loc[MY_TEAM_NAME]
-    return round(sim['Total_Points'] - base_stats['Total_Points'], 1)
+    gain = round(sim['Total_Points'] - base_stats['Total_Points'], 1)
+    return gain, get_impact_string(base_stats, sim, baseline)
 
 
 @st.cache_data
@@ -258,7 +259,8 @@ def backfill_add_gain(clean_name, proj_key):
         'Lineup_Slot': 'BE',
     }])], ignore_index=True)
     sim = get_league_stats(df_temp, df_h, df_p, df_current).set_index('Team').loc[MY_TEAM_NAME]
-    return round(sim['Total_Points'] - base_stats['Total_Points'], 1)
+    gain = round(sim['Total_Points'] - base_stats['Total_Points'], 1)
+    return gain, get_impact_string(base_stats, sim, baseline)
 
 
 @st.cache_data
@@ -719,9 +721,11 @@ with tab2:
         for label, pk in ANALYSIS_PROJ_KEYS.items():
             nan_mask = merged_swaps[label].isna()
             for idx, row in merged_swaps[nan_mask].iterrows():
-                merged_swaps.at[idx, label] = backfill_gain(
+                gain, details = backfill_gain(
                     row['Add_Clean'], row['Drop_Clean'], row['Slot'], pk
                 )
+                merged_swaps.at[idx, label] = gain
+                merged_swaps.at[idx, f'_Details_{label}'] = details
 
         merged_swaps['Avg Gain']  = merged_swaps[sys_labels].mean(axis=1).round(1)
         merged_swaps['Best Gain'] = merged_swaps[sys_labels].max(axis=1).round(1)
@@ -839,7 +843,9 @@ with tab3:
         for label, pk in ANALYSIS_PROJ_KEYS.items():
             nan_mask = merged_adds[label].isna()
             for idx, row in merged_adds[nan_mask].iterrows():
-                merged_adds.at[idx, label] = backfill_add_gain(row['Clean_Name'], pk)
+                gain, details = backfill_add_gain(row['Clean_Name'], pk)
+                merged_adds.at[idx, label] = gain
+                merged_adds.at[idx, f'_Details_{label}'] = details
 
         merged_adds['Avg Gain']  = merged_adds[sys_labels].mean(axis=1).round(1)
         merged_adds['Best Gain'] = merged_adds[sys_labels].max(axis=1).round(1)

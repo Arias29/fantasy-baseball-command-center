@@ -52,7 +52,7 @@ def get_impact_string(old_row, new_row, baseline_stats):
         if diff != 0:
             label = col.replace('_total_Pts', '')
             impacts.append(f"{'+' if diff > 0 else ''}{round(diff, 1)} {label}")
-    return ", ".join(impacts) if impacts else "Lateral move"
+    return ", ".join(impacts) if impacts else ""
 
 
 # ── CORE CALCULATION ENGINE ───────────────────────────────────────────────────
