@@ -211,7 +211,9 @@ def fast_swap_gain(ctx, drop_dict, add_dict, is_hitter):
     srt  = ctx['other_sorted']
     n    = ctx['n']
 
-    def _g(d, k): return float(d.get(k, 0) or 0)
+    def _g(d, k):
+        v = float(d.get(k, 0) or 0)
+        return 0.0 if np.isnan(v) else v
 
     if is_hitter:
         new_R       = proj['R']       - _g(drop_dict, 'R')   + _g(add_dict, 'R')

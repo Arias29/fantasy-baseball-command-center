@@ -759,7 +759,8 @@ with tab2:
                         cells.append(f'<td style="{td_base}">{val if pd.notna(val) else "—"}</td>')
                     elif c in sys_labels:
                         detail_key = f'_Details_{c}'
-                        detail = (row.get(detail_key, '') or '') if detail_key in df.columns else ''
+                        _dv = row.get(detail_key) if detail_key in df.columns else None
+                        detail = '' if pd.isna(_dv) else (_dv or '')
                         if pd.notna(val):
                             color = _gain_color(val)
                             tip   = f' title="{detail}"' if detail else ''
@@ -874,7 +875,8 @@ with tab3:
                         cells.append(f'<td style="{td_base}">{val if pd.notna(val) else "—"}</td>')
                     elif c in sys_labels:
                         detail_key = f'_Details_{c}'
-                        detail = (row.get(detail_key, '') or '') if detail_key in df.columns else ''
+                        _dv = row.get(detail_key) if detail_key in df.columns else None
+                        detail = '' if pd.isna(_dv) else (_dv or '')
                         if pd.notna(val):
                             color = _gain_color(val)
                             tip   = f' title="{detail}"' if detail else ''
