@@ -1197,11 +1197,12 @@ with tab4:
                                         })
 
                             if frames:
+                                available_labels = list(frames.keys())
                                 merge_keys = ['Drop', 'Drop_Clean', 'Drop_Slot', 'Add', 'Add_Clean']
                                 merged_xp = list(frames.values())[0]
                                 for f in list(frames.values())[1:]:
                                     merged_xp = merged_xp.merge(f, on=merge_keys, how='outer')
-                                merged_xp['Avg Gain'] = merged_xp[sys_labels].mean(axis=1).round(1)
+                                merged_xp['Avg Gain'] = merged_xp[available_labels].mean(axis=1).round(1)
                                 merged_xp = (merged_xp
                                              .sort_values('Avg Gain', ascending=False)
                                              .reset_index(drop=True))
@@ -1210,8 +1211,8 @@ with tab4:
                                     display = df.rename(columns={
                                         'Drop_Slot': 'Slot', 'Add': 'Add FA',
                                     })
-                                    cols_display = ['Drop', 'Slot', 'Add FA'] + sys_labels + ['Avg Gain']
-                                    gain_cols    = set(sys_labels) | {'Avg Gain'}
+                                    cols_display = ['Drop', 'Slot', 'Add FA'] + available_labels + ['Avg Gain']
+                                    gain_cols    = set(available_labels) | {'Avg Gain'}
 
                                     def _gain_color(v):
                                         if v >= 4.0: return '#3b82f6'
@@ -1237,7 +1238,7 @@ with tab4:
                                             val = row.get(c)
                                             if c in ('Drop', 'Slot', 'Add FA'):
                                                 cells.append(f'<td style="{td_base}">{val if pd.notna(val) else "—"}</td>')
-                                            elif c in sys_labels:
+                                            elif c in available_labels:
                                                 detail_key = f'_Details_{c}'
                                                 _dv = row.get(detail_key) if detail_key in display.columns else None
                                                 detail = '' if pd.isna(_dv) else (_dv or '')
