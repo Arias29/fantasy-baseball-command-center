@@ -264,6 +264,92 @@ def backfill_add_gain(clean_name, proj_key):
 
 
 @st.cache_data
+def simulate_cross_position_completions(
+    cross_type, my_player_clean, my_player_slot,
+    their_player_clean, their_player_positions,
+    trade_partner, proj_key,
+):
+    """
+    Enumerate every legal (secondary_drop, fa_add) completion for a 1-for-1
+    cross-position trade and return the full 4-move transaction's Total_Points
+    gain vs the untouched baseline.
+
+    cross_type: 'pitcher_for_hitter' (I send pitcher, receive hitter)
+              | 'hitter_for_pitcher' (I send hitter, receive pitcher)
+    """
+    df_rosters, df_current, df_fa_clean = load_espn_data()
+    df_h, df_p = load_projections(proj_key)
+    baseline   = get_baseline(proj_key)
+    base_my    = baseline.set_index('Team').loc[MY_TEAM_NAME]
+    base_pts   = base_my['Total_Points']
+
+    my_roster = df_rosters[df_rosters['Team'] == MY_TEAM_NAME]
+
+    if cross_type == 'pitcher_for_hitter':
+        drop_pool = my_roster[
+            (~my_roster['Lineup_Slot'].isin(PITCHING_POSITIONS))
+            & (my_roster['Lineup_Slot'] != 'BE')
+            & (my_roster['Clean_Name'] != my_player_clean)
+        ].copy()
+        fa_pool = (df_fa_clean.merge(df_p, on='Clean_Name', how='inner')
+                   .sort_values('IP', ascending=False).head(20))
+    else:
+        drop_pool = my_roster[
+            (my_roster['Lineup_Slot'].isin(PITCHING_POSITIONS))
+            & (my_roster['Clean_Name'] != my_player_clean)
+        ].copy()
+        fa_pool = (df_fa_clean.merge(df_h, on='Clean_Name', how='inner')
+                   .sort_values('PA', ascending=False).head(20))
+
+    drop_pool = drop_pool[drop_pool['Lineup_Slot'].apply(
+        lambda slot: is_eligible(their_player_positions, slot)
+    )]
+    eligible_fas = fa_pool[fa_pool['ESPN_Positions'].apply(
+        lambda pos: is_eligible(pos, my_player_slot)
+    )]
+
+    if drop_pool.empty or eligible_fas.empty:
+        return pd.DataFrame(columns=[
+            'Drop', 'Drop_Clean', 'Drop_Slot', 'Add', 'Add_Clean',
+            'Net Gain', 'Details',
+        ])
+
+    results = []
+    for _, drop in drop_pool.iterrows():
+        for _, add in eligible_fas.iterrows():
+            df_sim = df_rosters.copy()
+
+            mp_mask = df_sim['Clean_Name'] == my_player_clean
+            if trade_partner:
+                df_sim.loc[mp_mask, 'Team'] = trade_partner
+            else:
+                df_sim = df_sim[~mp_mask]
+
+            df_sim.loc[df_sim['Clean_Name'] == their_player_clean, 'Team'] = MY_TEAM_NAME
+            df_sim = df_sim[df_sim['Clean_Name'] != drop['Clean_Name']]
+            df_sim = pd.concat([df_sim, pd.DataFrame([{
+                'Team':        MY_TEAM_NAME,
+                'Clean_Name':  add['Clean_Name'],
+                'Status':      'Rostered',
+                'Lineup_Slot': my_player_slot,
+            }])], ignore_index=True)
+
+            sim  = get_league_stats(df_sim, df_h, df_p, df_current).set_index('Team').loc[MY_TEAM_NAME]
+            gain = round(sim['Total_Points'] - base_pts, 1)
+            results.append({
+                'Drop':       drop['Player'],
+                'Drop_Clean': drop['Clean_Name'],
+                'Drop_Slot':  drop['Lineup_Slot'],
+                'Add':        add['ESPN_Player'],
+                'Add_Clean':  add['Clean_Name'],
+                'Net Gain':   gain,
+                'Details':    get_impact_string(base_my, sim, baseline),
+            })
+
+    return pd.DataFrame(results)
+
+
+@st.cache_data
 def run_best_adds_for_system(proj_key, position):
     """
     Finds the best FA adds at a given position (stacked on roster, no drop).
@@ -1041,3 +1127,143 @@ with tab4:
                         style_standings(sim_standings.head(5)),
                         width='stretch',
                     )
+
+            # ── Cross-position trade completion ───────────────────────────────
+            if len(players_to_acquire) == 1 and len(players_to_drop) == 1:
+                my_clean    = drop_cleaned[0]
+                their_clean = acquire_cleaned[0]
+                my_row    = df_rosters[df_rosters['Clean_Name'] == my_clean]
+                their_row = df_rosters[df_rosters['Clean_Name'] == their_clean]
+
+                if not my_row.empty and not their_row.empty:
+                    my_player_slot = my_row.iloc[0]['Lineup_Slot']
+                    their_positions = their_row.iloc[0]['Positions']
+
+                    if my_player_slot not in {'BE', 'IL'}:
+                        df_h_id, df_p_id = load_projections('thebatx_ros')
+                        hitter_set  = set(df_h_id['Clean_Name'])
+                        pitcher_set = set(df_p_id['Clean_Name'])
+                        my_is_pitcher    = my_player_slot in PITCHING_POSITIONS
+                        their_is_pitcher = (their_clean in pitcher_set
+                                            and their_clean not in hitter_set)
+
+                        if my_is_pitcher != their_is_pitcher:
+                            cross_type = ('pitcher_for_hitter' if my_is_pitcher
+                                          else 'hitter_for_pitcher')
+
+                            st.divider()
+                            st.subheader("Complete This Trade")
+
+                            received_role = "hitter" if my_is_pitcher else "pitcher"
+                            secondary_pool_label = ("hitters" if my_is_pitcher
+                                                    else "pitchers")
+                            my_player_display    = my_row.iloc[0]['Player']
+                            their_player_display = their_row.iloc[0]['Player']
+
+                            st.markdown(
+                                f"Trading **{my_player_display}** ({my_player_slot}) for "
+                                f"**{their_player_display}** ({received_role}) leaves your "
+                                f"**{my_player_slot}** slot empty and gives "
+                                f"**{their_player_display}** no legal slot. Below are every "
+                                f"legal way to finish the trade: drop one of your "
+                                f"**{secondary_pool_label}** to seat **{their_player_display}**, "
+                                f"and add a free agent for the open **{my_player_slot}** slot. "
+                                f"Gains are the full 4-move transaction vs your untouched "
+                                f"baseline, sorted by average across all 3 projection systems."
+                            )
+
+                            sys_labels = list(ANALYSIS_PROJ_KEYS.keys())
+                            with st.spinner("Simulating completions across all 3 projection systems..."):
+                                frames = {}
+                                for label, pk in ANALYSIS_PROJ_KEYS.items():
+                                    df = simulate_cross_position_completions(
+                                        cross_type, my_clean, my_player_slot,
+                                        their_clean, their_positions,
+                                        trade_partner, pk,
+                                    )
+                                    if not df.empty:
+                                        frames[label] = df.rename(columns={
+                                            'Net Gain': label,
+                                            'Details':  f'_Details_{label}',
+                                        })
+
+                            if frames:
+                                merge_keys = ['Drop', 'Drop_Clean', 'Drop_Slot', 'Add', 'Add_Clean']
+                                merged_xp = list(frames.values())[0]
+                                for f in list(frames.values())[1:]:
+                                    merged_xp = merged_xp.merge(f, on=merge_keys, how='outer')
+                                merged_xp['Avg Gain'] = merged_xp[sys_labels].mean(axis=1).round(1)
+                                merged_xp = (merged_xp
+                                             .sort_values('Avg Gain', ascending=False)
+                                             .reset_index(drop=True))
+
+                                def _xp_html_table(df):
+                                    display = df.rename(columns={
+                                        'Drop_Slot': 'Slot', 'Add': 'Add FA',
+                                    })
+                                    cols_display = ['Drop', 'Slot', 'Add FA'] + sys_labels + ['Avg Gain']
+                                    gain_cols    = set(sys_labels) | {'Avg Gain'}
+
+                                    def _gain_color(v):
+                                        if v >= 4.0: return '#3b82f6'
+                                        if v >= 1.5: return '#22c55e'
+                                        if v >= 0.0: return '#eab308'
+                                        return '#ef4444'
+
+                                    th_style = (
+                                        'padding:8px 12px;text-align:left;border-bottom:1px solid #444;'
+                                        'font-size:0.82rem;color:#aaa;font-weight:600;white-space:nowrap;'
+                                    )
+                                    td_base = (
+                                        'padding:6px 12px;border-bottom:1px solid #2a2a2a;'
+                                        'font-size:0.88rem;white-space:nowrap;'
+                                    )
+                                    td_num = td_base + 'text-align:right;font-variant-numeric:tabular-nums;'
+
+                                    header = ''.join(f'<th style="{th_style}">{c}</th>' for c in cols_display)
+                                    rows_html = []
+                                    for _, row in display.iterrows():
+                                        cells = []
+                                        for c in cols_display:
+                                            val = row.get(c)
+                                            if c in ('Drop', 'Slot', 'Add FA'):
+                                                cells.append(f'<td style="{td_base}">{val if pd.notna(val) else "—"}</td>')
+                                            elif c in sys_labels:
+                                                detail_key = f'_Details_{c}'
+                                                _dv = row.get(detail_key) if detail_key in display.columns else None
+                                                detail = '' if pd.isna(_dv) else (_dv or '')
+                                                if pd.notna(val):
+                                                    color = _gain_color(val)
+                                                    tip   = f' title="{detail}"' if detail else ''
+                                                    cells.append(
+                                                        f'<td style="{td_num}color:{color};cursor:default;"{tip}>{val:g}</td>'
+                                                    )
+                                                else:
+                                                    cells.append(f'<td style="{td_num}color:#555;">—</td>')
+                                            elif c in gain_cols:
+                                                if pd.notna(val):
+                                                    color = _gain_color(val)
+                                                    cells.append(f'<td style="{td_num}color:{color};">{val:g}</td>')
+                                                else:
+                                                    cells.append(f'<td style="{td_num}color:#555;">—</td>')
+                                            else:
+                                                cells.append(
+                                                    f'<td style="{td_num}">{val:g}</td>'
+                                                    if pd.notna(val) else f'<td style="{td_num}color:#555;">—</td>'
+                                                )
+                                        rows_html.append(f'<tr>{"".join(cells)}</tr>')
+
+                                    return (
+                                        '<div style="overflow-x:auto;max-height:480px;overflow-y:auto;">'
+                                        '<table style="border-collapse:collapse;width:100%;background:#0e1117;">'
+                                        f'<thead><tr>{header}</tr></thead>'
+                                        f'<tbody>{"".join(rows_html)}</tbody>'
+                                        '</table></div>'
+                                    )
+
+                                st.markdown(_xp_html_table(merged_xp), unsafe_allow_html=True)
+                            else:
+                                st.info(
+                                    "No legal completion found — every secondary drop or "
+                                    "FA add fails slot eligibility."
+                                )
