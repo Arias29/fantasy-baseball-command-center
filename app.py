@@ -1014,68 +1014,77 @@ with tab4:
     st.subheader("Trade / Waiver Pickup Evaluator")
     st.caption("Results shown across TheBatX, Steamer, and Depth Charts projections.")
 
+    df_rosters, df_current, df_fa_clean = load_espn_data()
+
+    WAIVER_OPT = "— Waiver pickup —"
+    other_teams = sorted(
+        df_rosters[df_rosters['Team'] != MY_TEAM_NAME]['Team'].dropna().unique().tolist()
+    )
+    team_options = [WAIVER_OPT] + other_teams
+
+    selected_team = st.selectbox(
+        "Trade partner",
+        team_options,
+        index=1 if other_teams else 0,
+        key='partner_select',
+    )
+
+    if selected_team == WAIVER_OPT:
+        acquire_pool  = sorted(df_fa_clean['ESPN_Player'].dropna().unique().tolist())
+        trade_partner = None
+        acquire_label = "Players I'm acquiring (free agents)"
+    else:
+        acquire_pool = sorted(
+            df_rosters[df_rosters['Team'] == selected_team]['Player']
+            .dropna().unique().tolist()
+        )
+        trade_partner = selected_team
+        acquire_label = f"Players I'm acquiring (from {selected_team})"
+
+    drop_pool = sorted(
+        df_rosters[df_rosters['Team'] == MY_TEAM_NAME]['Player']
+        .dropna().unique().tolist()
+    )
+
     col_a, col_b = st.columns(2)
     with col_a:
-        acquire_raw = st.text_input(
-            "Players I'm acquiring",
-            placeholder="e.g. Grayson Rodriguez, Chris Martin",
-            key='acquire_input',
+        players_to_acquire = st.multiselect(
+            acquire_label, acquire_pool, key='acquire_select',
         )
     with col_b:
-        drop_raw = st.text_input(
-            "Players I'm giving up",
-            placeholder="e.g. Seth Lugo, Adrian Morejon",
-            key='drop_input',
+        players_to_drop = st.multiselect(
+            "Players I'm giving up", drop_pool, key='drop_select',
         )
-
-    partner_raw = st.text_input(
-        "Trade partner team name  (leave blank for waiver pickup)",
-        placeholder="e.g. Exit Velo Vets",
-        key='partner_input',
-    )
 
     evaluate = st.button("Evaluate Trade", type="primary")
 
     if evaluate:
-        if not acquire_raw.strip() or not drop_raw.strip():
-            st.warning("Enter at least one player to acquire and one to give up.")
+        if not players_to_acquire or not players_to_drop:
+            st.warning("Pick at least one player to acquire and one to give up.")
         else:
-            df_rosters, df_current, _ = load_espn_data()
-
-            players_to_acquire = [p.strip() for p in acquire_raw.split(',') if p.strip()]
-            players_to_drop    = [p.strip() for p in drop_raw.split(',')    if p.strip()]
-            trade_partner      = partner_raw.strip() or None
-
             acquire_cleaned = [aggressive_clean(p) for p in players_to_acquire]
             drop_cleaned    = [aggressive_clean(p) for p in players_to_drop]
 
-            # Build the simulated roster once (same for all projection systems)
             df_sim = df_rosters.copy()
-            warnings_shown = set()
 
-            for raw, cleaned in zip(players_to_drop, drop_cleaned):
+            for cleaned in drop_cleaned:
                 mask = df_sim['Clean_Name'] == cleaned
-                if mask.any():
-                    if trade_partner:
-                        df_sim.loc[mask, 'Team'] = trade_partner
-                    else:
-                        df_sim = df_sim[~mask]
-                elif raw not in warnings_shown:
-                    st.warning(f"**{raw}** not found on your active roster.")
-                    warnings_shown.add(raw)
+                if trade_partner:
+                    df_sim.loc[mask, 'Team'] = trade_partner
+                else:
+                    df_sim = df_sim[~mask]
 
-            for raw, cleaned in zip(players_to_acquire, acquire_cleaned):
+            for cleaned in acquire_cleaned:
                 mask = df_sim['Clean_Name'] == cleaned
                 if mask.any():
                     df_sim.loc[mask, 'Team'] = MY_TEAM_NAME
                 else:
-                    new_row = pd.DataFrame([{
+                    df_sim = pd.concat([df_sim, pd.DataFrame([{
                         'Team':        MY_TEAM_NAME,
                         'Clean_Name':  cleaned,
                         'Status':      'Rostered',
                         'Lineup_Slot': 'BE',
-                    }])
-                    df_sim = pd.concat([df_sim, new_row], ignore_index=True)
+                    }])], ignore_index=True)
 
             with st.spinner("Running simulation across all 3 projection systems..."):
                 trade_results = {}
