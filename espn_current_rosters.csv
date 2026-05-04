@@ -56,18 +56,18 @@ The Roman Empire Strikes Back,Austin Martin,LF/OF/UTIL/BE/IL,OF,Rostered
 The Roman Empire Strikes Back,Antonio Senzatela,P/SP/BE/IL/RP,RP,Rostered
 Rebels,Julio Rodriguez,CF/OF/UTIL/BE/IL,CF,Rostered
 Rebels,Tarik Skubal,P/SP/BE/IL,SP,Rostered
-Rebels,Garrett Crochet,P/SP/BE/IL,SP,Rostered
+Rebels,Garrett Crochet,P/SP/BE/IL,BE,Rostered
 Rebels,Jacob deGrom,P/SP/BE/IL,SP,Rostered
 Rebels,Freddie Freeman,1B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Rebels,Bo Bichette,SS/2B/SS/IF/UTIL/BE/IL/3B/1B/3B,SS,Rostered
-Rebels,Christian Yelich,DH/UTIL/BE/IL,UTIL,Rostered
+Rebels,Christian Yelich,DH/UTIL/BE/IL,BE,Rostered
 Rebels,Cade Smith,P/RP/BE/IL,RP,Rostered
-Rebels,Jose Altuve,2B/2B/SS/IF/LF/OF/DH/UTIL/BE/IL,2B,Rostered
+Rebels,Jose Altuve,2B/2B/SS/IF/LF/OF/DH/UTIL/BE/IL,DH,Rostered
 Rebels,Yainer Diaz,C/DH/UTIL/BE/IL,C,Rostered
-Rebels,Bryson Stott,2B/2B/SS/IF/UTIL/BE/IL,BE,Rostered
+Rebels,Bryson Stott,2B/2B/SS/IF/UTIL/BE/IL,2B,Rostered
 Rebels,Steven Kwan,LF/OF/UTIL/BE/IL/CF,LF,Rostered
 Rebels,Adolis Garcia,RF/OF/UTIL/BE/IL,OF,Rostered
-Rebels,Willson Contreras,1B/1B/3B/IF/UTIL/BE/IL,BE,Rostered
+Rebels,Willson Contreras,1B/1B/3B/IF/UTIL/BE/IL,UTIL,Rostered
 Rebels,Jonathan Aranda,1B/1B/3B/IF/UTIL/BE/IL,1B,Rostered
 Rebels,Carlos Correa,3B/SS/2B/SS/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 Rebels,Kerry Carpenter,LF/RF/OF/DH/UTIL/BE/IL,OF,Rostered
@@ -123,8 +123,8 @@ Budget Ballers,Andy Pages,LF/CF/RF/OF/UTIL/BE/IL,RF,Rostered
 Budget Ballers,Corey Seager,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
 Budget Ballers,Matt Chapman,3B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 Budget Ballers,Taylor Ward,LF/OF/UTIL/BE/IL,UTIL,Rostered
-Budget Ballers,Jason Adam,P/RP/BE/IL,RP,Rostered
 Budget Ballers,Colson Montgomery,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
+Budget Ballers,Daniel Palencia,P/RP/BE/IL,RP,Rostered
 Budget Ballers,Gavin Williams,P/SP/BE/IL,SP,Rostered
 Budget Ballers,Ranger Suarez,P/SP/BE/IL,SP,Rostered
 Budget Ballers,Abner Uribe,P/RP/BE/IL,RP,Rostered
@@ -166,7 +166,7 @@ Lucas Alvarez Team,Clay Holmes,P/SP/BE/IL,SP,Rostered
 Lucas Alvarez Team,Ryne Stanek,P/RP/BE/IL,RP,Rostered
 Lucas Alvarez Team,Carter Jensen,C/DH/UTIL/BE/IL,C,Rostered
 Lucas Alvarez Team,Josh Jung,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
-brew crew,Juan Soto,RF/OF/UTIL/BE/IL,RF,Rostered
+brew crew,Juan Soto,RF/OF/UTIL/BE/IL/DH,RF,Rostered
 brew crew,Aaron Judge,RF/OF/DH/UTIL/BE/IL,DH,Rostered
 brew crew,Luis Castillo,P/SP/BE/IL,SP,Rostered
 brew crew,Jesus Luzardo,P/SP/BE/IL,SP,Rostered
@@ -308,6 +308,7 @@ John's Finest Team,Daniel Schneemann,2B/3B/2B/SS/1B/3B/IF/CF/OF/UTIL/BE/IL,CF,Ro
 adam's Astounding Team,Cal Raleigh,C/DH/UTIL/BE/IL,C,Rostered
 adam's Astounding Team,Paul Skenes,P/SP/BE/IL,SP,Rostered
 adam's Astounding Team,Chris Sale,P/SP/BE/IL,SP,Rostered
+adam's Astounding Team,Spencer Strider,P/SP/BE/IL,SP,Rostered
 adam's Astounding Team,Austin Riley,3B/1B/3B/IF/UTIL/BE/IL,3B,Rostered
 adam's Astounding Team,Alex Bregman,3B/1B/3B/IF/UTIL/BE/IL,1B/3B,Rostered
 adam's Astounding Team,CJ Abrams,SS/2B/SS/IF/UTIL/BE/IL,2B/SS,Rostered
@@ -316,7 +317,6 @@ adam's Astounding Team,Nico Hoerner,2B/2B/SS/IF/UTIL/BE/IL,2B,Rostered
 adam's Astounding Team,Yandy Diaz,1B/1B/3B/IF/DH/UTIL/BE/IL,DH,Rostered
 adam's Astounding Team,Oneil Cruz,CF/OF/UTIL/BE/IL,CF,Rostered
 adam's Astounding Team,Teoscar Hernandez,RF/OF/UTIL/BE/IL/LF,RF,Rostered
-adam's Astounding Team,Luis Robert Jr.,CF/OF/UTIL/BE/IL,OF,Rostered
 adam's Astounding Team,Luis Garcia Jr.,2B/2B/SS/IF/UTIL/BE/IL/1B/1B/3B,UTIL,Rostered
 adam's Astounding Team,Kyle Manzardo,1B/1B/3B/IF/DH/UTIL/BE/IL,1B,Rostered
 adam's Astounding Team,Brad Keller,P/RP/BE/IL,RP,Rostered
@@ -328,7 +328,6 @@ adam's Astounding Team,Mitch Keller,P/SP/BE/IL,P,Rostered
 adam's Astounding Team,Matt Strahm,P/RP/BE/IL,RP,Rostered
 adam's Astounding Team,Matt Svanson,P/RP/BE/IL,RP,Rostered
 adam's Astounding Team,Luis Severino,P/SP/BE/IL,P,Rostered
-adam's Astounding Team,Luis Gil,P/SP/BE/IL,SP,Rostered
 adam's Astounding Team,Grant Holmes,P/SP/BE/IL,SP,Rostered
 adam's Astounding Team,Owen Caissie,RF/OF/UTIL/BE/IL,OF,Rostered
 adam's Astounding Team,Ezequiel Tovar,SS/2B/SS/IF/UTIL/BE/IL,SS,Rostered
